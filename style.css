@@ -1,0 +1,328 @@
+/* 주문서 전용 스타일입니다. index.html의 구조는 그대로 사용합니다. */
+
+:root {
+    --beige: #faf6f0;
+    --paper: #fffdf9;
+    --brown: #6b4226;
+    --brown-light: #a9774e;
+    --ink: #30241c;
+    --muted: #77695f;
+    --line: #e8d9ca;
+    --green: #2f6b42;
+    --green-bg: #e4f4e8;
+    --shadow: 0 14px 40px rgba(81, 52, 31, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--beige);
+    font-family: "맑은 고딕", sans-serif;
+    line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* 헤더는 최대 너비 520px 안에서 중앙에 배치합니다. */
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: min(100% - 32px, 520px);
+    margin: 0 auto;
+    padding: 36px 0 20px;
+    text-align: left;
+}
+
+.brand-mark {
+    display: grid;
+    flex: 0 0 auto;
+    width: 82px;
+    height: 82px;
+    place-items: center;
+    border-radius: 28px;
+    background: var(--paper);
+    box-shadow: var(--shadow);
+    font-size: 3.2rem;
+    transform-origin: center bottom;
+    animation: logoShake 4s ease-in-out infinite;
+}
+
+/* 카페 로고가 천천히 좌우로 흔들리는 애니메이션입니다. */
+@keyframes logoShake {
+    0%, 100% {
+        transform: rotate(-2deg);
+    }
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+.brand-name,
+.brand-subtitle {
+    margin: 0;
+}
+
+.brand-name {
+    color: var(--brown);
+    font-size: 1.55rem;
+    font-weight: 800;
+}
+
+.brand-subtitle {
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+main {
+    width: min(100% - 32px, 520px);
+    margin: 0 auto;
+    padding-bottom: 48px;
+}
+
+/* 폼 전체는 부드러운 그림자와 둥근 모서리로 감싸줍니다. */
+#orderForm {
+    padding: 28px;
+    border: 1px solid rgba(107, 66, 38, 0.1);
+    border-radius: 24px;
+    background: var(--paper);
+    box-shadow: var(--shadow);
+}
+
+.form-field {
+    display: block;
+    margin: 0 0 20px;
+    padding: 0;
+    border: 0;
+}
+
+.form-field label,
+.form-field legend {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--ink);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.form-field legend {
+    padding: 0;
+}
+
+/* 모든 입력 필드가 동일한 넓이와 간격을 사용하도록 스타일을 적용합니다. */
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px;
+    outline: none;
+    color: var(--ink);
+    background: white;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #9d8d83;
+}
+
+/* 포커스 시 갈색 테두리와 연한 갈색 그림자를 사용합니다. */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--brown);
+    box-shadow: 0 0 0 3px rgba(107, 66, 38, 0.14);
+}
+
+/* 라디오와 체크박스는 가로로 나란히 배치하고 간격을 둡니다. */
+.form-field:has(legend) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.form-field:has(legend) legend {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
+.form-field label:has(input[type="radio"]),
+.form-field label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fffaf4;
+    font-weight: 500;
+}
+
+.form-field label:has(input[type="radio"]),
+.form-field label:has(input[type="checkbox"]) {
+    box-sizing: border-box;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    flex: 0 0 auto;
+    width: 17px;
+    height: 17px;
+    accent-color: var(--brown);
+}
+
+.form-field label span {
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+/* 예상 금액은 크게 보여주고 가운데 정렬합니다. */
+.amount-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 28px 0 18px;
+    padding: 18px;
+    border-radius: 14px;
+    background: #f1e7dc;
+    color: var(--brown);
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.amount-area strong {
+    color: var(--brown);
+}
+
+/* 주문하기 버튼은 갈색 배경과 흰 글씨를 사용하고 마우스가 올리면 밝아집니다. */
+#orderForm button[type="submit"] {
+    width: 100%;
+    border: 0;
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: white;
+    background: var(--brown);
+    box-shadow: 0 8px 18px rgba(107, 66, 38, 0.22);
+    font-weight: 800;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#orderForm button[type="submit"]:hover {
+    background: #7c5030;
+    transform: translateY(-1px);
+}
+
+/* 다시 작성 버튼은 흰 배경에 갈색 테두리를 사용합니다. */
+#orderForm button[type="reset"] {
+    width: 100%;
+    margin-top: 12px;
+    border: 1px solid var(--brown);
+    border-radius: 12px;
+    padding: 12px 18px;
+    color: var(--brown);
+    background: white;
+    font-weight: 700;
+}
+
+#orderForm button[type="reset"]:hover {
+    background: #f7eee5;
+}
+
+/* 주문 확인 메시지는 처음에 숨기고 확인되면 연두색 배경과 초록 글씨로 보입니다. */
+#orderConfirmation {
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 12px;
+    color: var(--green);
+    background: var(--green-bg);
+    font-weight: 700;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 화면이 모바일 크기에서는 패딩과 입력 배치를 조정합니다. */
+@media (max-width: 560px) {
+    .site-header {
+        gap: 12px;
+        padding-top: 24px;
+    }
+
+    .brand-mark {
+        width: 66px;
+        height: 66px;
+        border-radius: 22px;
+        font-size: 2.6rem;
+    }
+
+    .brand-name {
+        font-size: 1.3rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.82rem;
+    }
+
+    #orderForm {
+        padding: 22px 18px;
+        border-radius: 20px;
+    }
+
+    .form-field:has(legend) {
+        grid-template-columns: 1fr;
+    }
+
+    .form-field:has(legend) legend {
+        grid-column: auto;
+    }
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    .brand-mark {
+        animation: none;
+    .amount-area {
+        font-size: 21px;
+    }
+}
+
+/* 모든 입력 요소가 키보드에서 자연스럽게 보이도록 설정합니다. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
